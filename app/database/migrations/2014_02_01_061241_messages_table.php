@@ -13,11 +13,11 @@ class MessagesTable extends Migration {
 	{
 		Schema::create("messages",function($table){
 			$table->increments('id');
-			$table->integer('receiver_id')->unsigned();
+			$table->integer('reciever_id')->unsigned();
 			$table->integer('sender_id')->unsigned();
 			$table->string('message');
 			//constraints
-			$table->foreign('receiver_id')->references('id')->on('users');
+			$table->foreign('reciever_id')->references('id')->on('users');
 			$table->foreign('sender_id')->references('id')->on('users');
 		});
 	}
