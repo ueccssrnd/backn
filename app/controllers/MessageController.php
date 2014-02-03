@@ -30,6 +30,9 @@ class MessageController extends BaseController{
 	}
 
 	public function delete(){
-
+		$id = Input::get('id');
+		$message = Message::find($id);
+		$message->delete();
+		return Response::json(array("message"=>1));
 	}
 }
