@@ -14,17 +14,16 @@ class MessageController extends BaseController{
 		$message->message = $content_message;
 		$message->save();
 		return Response::json(array("message"=>1));
-
 	}
 
 	public function viewInbox(){
-		$id = Input::get('id');
+		$id = Auth::user()->id;
 		$messages = Input::where('reciever_id')->get();
 		return Response::json($messages);
 	}
 
 	public function viewSentMessages(){
-		$id = Input::get('id');	
+		$id = Auth::user()->id;
 		$messages = Input::where('sender_id')->get();
 		return Response::json($messages);
 	}
