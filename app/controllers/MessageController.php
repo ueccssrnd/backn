@@ -1,13 +1,9 @@
 <?php
 class MessageController extends BaseController{
 	public function send(){
-		$sender = Input::get('sender');
-		$reciever = Input::get('reciever');
+		$sender_id = Input::get('sender_id');
+		$reciever_id = Input::get('reciever_id');
 		$content_message = Input::get('message');
-
-		$sender_id = User::where('username', '=', $sender);
-		$reciever_id = User::where('reciever', '=', $receiver);
-
 		$message = new Message();
 		$message->sender_id = $sender_id;
 		$message->receiver_id = $reciever_id;

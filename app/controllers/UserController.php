@@ -9,10 +9,11 @@ class UserController extends BaseController{
 			$user = $this->prepareUser($user);
 			//save the instance.
 			$user->save();	
-			//return stupid.
-			return Response::json(array("message" => 1));
+			//successful.
+			return Response::json(array("status" => 1, "message" => 'User Successfuly Added'));
 		}else{
-			return Response::json(array("message" => -1));
+			//unsuccessful
+			return Response::json(array("status" => -1, "message" => 'Error in signing up'));
 		}
 	}
 	public function modifyAccount(){
@@ -22,12 +23,13 @@ class UserController extends BaseController{
 		$user = User::find($id);
 		$user->status = 0;
 		$user->save();
-		return Response::json(array("message" => 1));
+		return Response::json(array('status' => 1,"message" => "Account Successfuly Modified"));
 	}
 	public function deleteAccount(){
 		$id = Input::get('id');
 		$user = User::find('id');
 		$user->delete();
+		return Response::json(array('status' => 1,"message" => "Account Successfuly Deleted"));
 	}
 	public function showProfile(){
 		$id = Input::get('id');

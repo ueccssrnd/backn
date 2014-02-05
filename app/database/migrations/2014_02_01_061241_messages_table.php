@@ -16,6 +16,7 @@ class MessagesTable extends Migration {
 			$table->integer('reciever_id')->unsigned();
 			$table->integer('sender_id')->unsigned();
 			$table->string('message');
+			$table->string('subject');
 			//constraints
 			$table->foreign('reciever_id')->references('id')->on('users');
 			$table->foreign('sender_id')->references('id')->on('users');
