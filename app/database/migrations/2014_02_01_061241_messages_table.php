@@ -17,6 +17,8 @@ class MessagesTable extends Migration {
 			$table->integer('sender_id')->unsigned();
 			$table->string('message');
 			$table->string('subject');
+			$table->timestamps();
+			$table->softDeletes();
 			//constraints
 			$table->foreign('reciever_id')->references('id')->on('users');
 			$table->foreign('sender_id')->references('id')->on('users');

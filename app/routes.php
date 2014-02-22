@@ -16,15 +16,7 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::get('/login',function(){
-	$username = Input::get('username');
-	$password = Input::get('password');
-	if(Auth::attempt(array('username' => $username, 'password' => Hash::make($password), 'status' => 1))){
-		return Redirect::intended('dashboard');
-	}else{
-		return "Invalid Login Credentials";
-	}
-});
 
-/*Controller Routes*/
+/*User Controller Routes*/
+Route::get('/login','UserController@login');
 Route::get('/signup','UserController@createAccount');

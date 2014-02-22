@@ -1,6 +1,7 @@
 <?php
 class UserController extends BaseController{
 
+	/*Controller Routes Function*/
 	public function createAccount(){
 		//check if there is existing record
 		$count = User::where('username','=',Input::get('username'))->count();
@@ -16,20 +17,29 @@ class UserController extends BaseController{
 			return Response::json(array("status" => -1, "message" => 'Error in signing up'));
 		}
 	}
-	public function modifyAccount(){
-		$id = Input::get('id');
-		$user = User::find($id);
-		$user = prepareUser($user);
-		$user = User::find($id);
-		$user->status = 0;
-		$user->save();
-		return Response::json(array('status' => 1,"message" => "Account Successfuly Modified"));
+	public function login(){
+		$username = Input::get('username');
+		$password = Input::get('password'); 
+		if(Auth::attempt(array('username' => $username, 'password' => Hash::make($password)))){
+			return Response::json(array('status'=>1, "message" => "Welcome to WOM-N"));
+		}else{
+			return Response::json(array('status'=>-1, "message" => "Invalid Login Credentials"));
+		}
 	}
-	public function deleteAccount(){
-		$id = Input::get('id');
-		$user = User::find('id');
-		$user->delete();
-		return Response::json(array('status' => 1,"message" => "Account Successfuly Deleted"));
+	/*Helper Functions*/
+	public function findByUsername(){
+		$username = Input::get('username');
+		$user = DB::table('users')->where('username',$username)->first();
+		return $user;
+	}
+	public function isUserExisting(){
+		$username = Input::get('username');
+		$count = DB::table('users')->where('username',$username)->count();
+		if($count == 0){
+			return false;
+		}else{
+			return true;
+		}
 	}
 	public function showProfile(){
 		$id = Input::get('id');
@@ -53,4 +63,19 @@ class UserController extends BaseController{
 		$user->status = 1;
 		return $user;
 	}
-}
+	public function modifyAccount(){
+		$id = Input::get('id');
+		$user = User::find($id);
+		$user = prepareUser($user);
+		$user = User::find($id);
+		$user->status = 0;
+		$user->save();
+		return Response::json(array('status' => 1,"message" => "Account Successfuly Modified"));
+	}
+	public function deleteAccount(){
+		$id = Input::get('id');
+		$user = User::find('id');
+		$user->delete();
+		return Response::json(array('status' => 1,"message" => "Account Successfuly Deleted"));
+	}
+} 

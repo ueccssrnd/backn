@@ -9,7 +9,7 @@ class UsersTable extends Migration {
 	 *
 	 * Roles: 1 = normal user, 2 = moderator, 3 = administrator
 	 * Status: 1 = actived, 0 = deactivated 
-	 * Gender" 1 = male, 2 = female, 3 = i don't know
+	 * Gender" 1 = male, 2 = female
 	 * Civil status: 1 = single, 2 = married, 3 = divorce, 4 = seperated, 5 = widowed
 	 * @return void
 	 */
@@ -19,14 +19,10 @@ class UsersTable extends Migration {
 			$table->increments('id');
 			$table->string('username');
 			$table->string('password');
-			$table->string('first_name');
-			$table->string('email');
-			$table->string('last_name');
-			$table->date('birthdate');
 			$table->smallInteger('role');
-			$table->smallInteger('civil_status');
-			$table->smallInteger('gender');
-			$table->smallInteger('status');
+			$table->smallInteger('login_status');
+			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
