@@ -6,7 +6,11 @@ class UserInformationTable extends Migration {
 
 	/**
 	 * Run the migrations.
-	 *
+	 * 1 = single
+	 * 2 = married
+	 * 3 = widowed
+	 * 4 = annulled
+	 * 5 = divorced
 	 * @return void
 	 */
 	public function up()
@@ -21,7 +25,7 @@ class UserInformationTable extends Migration {
 			$table->date('birthdate');
 			$table->string('contact_number');
 			$table->smallInteger('gender');
-
+			$table->integer('civil_status');
 			$table->timestamps();
 			$table->softDeletes();
 

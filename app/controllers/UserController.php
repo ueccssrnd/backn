@@ -26,6 +26,16 @@ class UserController extends BaseController{
 			return Response::json(array('status'=>-1, "message" => "Invalid Login Credentials"));
 		}
 	}
+	public function saveSession(){
+		$user = new User();
+		$user->first_name = Input::get('first_name');
+		$user->last_name = Input::get('last_name');
+		$user->birthdate = Input::get('birthdate');
+		$user->address = Input::get('address');	
+		$user->gender = Input::get('gender');
+		$user->civil_status = Input::get('civil_status');
+		Session::add('prospect_user',$user);
+	}
 	/*Helper Functions*/
 	public function findByUsername(){
 		$username = Input::get('username');
@@ -57,6 +67,7 @@ class UserController extends BaseController{
 		$user->civil_status = Input::get('civil_status');
 		$user->birthdate = Input::get('birthdate');
 		$user->gender = Input::get('gender');
+		$user->address = Input::get('address');
 		$user->first_name = Input::get('first_name');
 		$user->last_name = Input::get('last_name');
 		$user->role = Input::get('role');
