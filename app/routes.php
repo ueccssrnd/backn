@@ -21,3 +21,4 @@ Route::get('/', function()
 Route::get('/login','UserController@login');
 Route::get('/signup','UserController@createAccount');
 Route::get('/savesession','UserController@saveSession');
+Route::get('/register','UserController@register');

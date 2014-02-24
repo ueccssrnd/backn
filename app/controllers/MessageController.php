@@ -23,7 +23,6 @@ class MessageController extends BaseController{
 		$messages = Input::where('sender_id')->get();
 		return Response::json($messages);
 	}
-
 	public function delete(){
 		$id = Input::get('id');
 		$message = Message::find($id);

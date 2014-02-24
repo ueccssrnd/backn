@@ -20,6 +20,7 @@ class UsersTable extends Migration {
 			$table->string('username');
 			$table->string('password');
 			$table->smallInteger('role');
+			$table->string("email");
 			$table->smallInteger('login_status');
 			$table->timestamps();
 			$table->softDeletes();
