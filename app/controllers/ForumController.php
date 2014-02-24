@@ -7,10 +7,12 @@ class ForumController extends BaseController{
 		return Response::json($forums);
 	}
 
-	public function getAllForumReplies(){
-		DB::table('forums')
+	public function getAllForumReplies($id){
+		$result = DB::table('forums')
 		->join('forum_replies','forums.id','=','forum_replies.forum_id')
-		->join('categories','forums.category_id','=','category_id')
-		->select('forums_replies.reply','categories.category_name','forums.id','forums.thread_title');
+		->select('forum_replies.reply','forums.id','forums.thread_title')
+		->where('forums.id' , '=' , $id)
+		->get();
+		return Response::json($result);
 	}
 }

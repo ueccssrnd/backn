@@ -13,7 +13,7 @@ class UserController extends BaseController{
 			//successful.
 			return Response::json(array("status" => 1, "message" => 'User Successfuly Added'));
 		}else{
-			//unsuccessful
+			//unsuccessful.
 			return Response::json(array("status" => -1, "message" => 'Error in signing up'));
 		}
 	}
